@@ -1,0 +1,81 @@
+/* 
+    Document   : login_style
+    Created on : Oct 28, 2014, 2:56:29 PM
+    Author     : Stuart
+    Description:
+        Style the login page. This is where the 
+        admin is given the option to login to the 
+        website.
+*/
+
+html{
+    background: #3F3A4F;
+}
+
+/*Center the element, containing the form*/
+#loginFunction{
+    background: none repeat scroll 0 0 #231e30;
+    height: 40%;
+    margin-left: 30%;
+    margin-right: auto;
+    margin-top: 10%;
+    position: absolute;
+    width: 40%;
+}
+
+
+/*Center the form, inside the containing element*/
+form#frmLogin{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+}
+
+/*This code aligns the labels to the left of the input boxes*/
+label{
+    width: 4em;
+    float: left;
+    text-align: right;
+    margin-right: 0.5em;
+    display: block;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    color: white;
+    font-size: 13pt;
+}
+
+
+/*Remove the borders from all the forms*/
+fieldset{
+    border: none;
+}
+
+.passwordInput{
+    margin-top: 1px;
+}
+
+/*Style the button*/
+#btnLogin{
+    background: none repeat scroll 0 0 #78738a;
+    border-color: -moz-use-text-color -moz-use-text-color #827b98;
+    border-width: 0 0 2px;
+    color: white;
+    cursor: pointer;
+    font-size: 22px;
+    height: 50px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    vertical-align: top;
+    width: 100%;
+}
+
+.loginInput{
+    text-align: center;
+}
+
+
+

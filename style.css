@@ -1,0 +1,468 @@
+@import url(http://fonts.googleapis.com/css?family=Audiowide);
+
+* {
+	margin: 0em;
+	padding: 0em;
+	font-family: "HelveticaNeue-UltraLight", sans-serif;
+}
+
+
+
+/**********Header Section***********/
+header {
+	height: 100px;
+	background: #484952;
+	width: 100%;
+	float: left;
+	color: #ddd;
+}
+
+header h1 {
+    color: #ddd;
+    float: left;
+    font-size: 45pt;
+    font-weight: 200;
+    line-height: 95px;
+    margin-left: 1em;
+}
+
+header h2 {
+    float: left;
+    font-size: 1.25em;
+    font-weight: 200;
+    line-height: 130px;
+    margin-left: 1%;
+}
+
+.getInTouch{
+    float: right;
+    font-size: 10pt;
+    margin-right: 1%;
+    position: relative;
+    top: 60%;
+    transform: translateY(-60%);
+    width: 25%;
+}
+.getInTouch ul.row{
+    padding: 0;
+}
+.getInTouch ul{
+    list-style-type: none;
+}
+.getInTouch ul.row li{
+    display: inline;
+}
+.getInTouch ul.row >:first-child{
+    font-weight: bold;
+}    
+.getInTouch a{
+    text-decoration: none;
+    color:inherit;
+}
+/**********End Header Section***********/
+
+
+
+/**********Navigation Section***********/
+nav {
+	width: 100%;
+	background: rgba(211,211,211,0.9);
+	border-bottom: 1px solid #000;
+        z-index: 99;
+}
+
+nav ol {
+	list-style-type: none;
+	margin-left: 4px;
+}
+
+ol#mainNav {
+	float: left;
+}
+
+ol#mainNav li {
+	transition: .35s;
+	display: inline-block;
+	padding: .5em 0em;
+	margin-left: -4px;
+	border-right: 1px solid #000;
+}
+/*ol#mainNav li:last-child {
+    margin-left: -5px;
+}*/
+ol#mainNav li:hover {
+	transition: .35s;
+	background-color: #6d738c;
+}
+
+ol#mainNav li a {
+	padding: .5em 1em;
+	color: #000;
+	text-decoration: none;
+}
+
+ol#mainNav li .activePage {
+    border-bottom: 2px solid red;
+}
+
+ol#secondaryNav li .activePage {
+    border-bottom: 3px solid red;
+    padding-bottom: 5px;
+}
+
+ol#secondaryNav {
+	float: right;
+        display: inline-flex;
+        flex-direction: row-reverse;
+}
+
+ol#secondaryNav li {
+	padding: 0.5em 3vw 0.5em 0;
+}
+
+ol#secondaryNav li a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/**********End Navigation Section***********/
+
+
+
+.mainContent {
+	min-height: 100vh;
+	background: #1c1e1f;
+	color: #eee;
+}
+
+
+/**********Start HomePage Section***********/
+#home .body{
+    padding-top: 50px;
+    min-height: 100vh
+        
+}
+
+#home .left{
+    float: left;
+    height: 90vh;
+    margin-left: 5%;
+    width: 60%;
+}
+.news{
+    background: none repeat scroll 0 0 #484952;
+    height: 50%;
+    width: 100%;
+    padding-top: 1%;
+}
+.upcomingEvents{
+    background: none repeat scroll 0 0 #484952;
+    height: 50%;
+    width: 100%;
+    margin-top: 5%;
+    padding-top: 1%;
+}
+.agenda iframe{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.agenda{
+    float: left;
+    width: 32%;
+}
+.left h3{
+    font-size: 1.75em;
+    font-weight: 200;
+    text-align: center;
+    padding-bottom: 1%;
+}
+
+.left p{
+    padding: 1% 2%;
+}
+.left ul{
+    padding: 1% 2% 1% 4%;
+}
+/**********End Home Section***********/
+
+
+/**********Start Schedule Section***********/
+#schedule iframe{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    width: 75%;
+}
+/**********End Schedule Section***********/
+
+
+/**********Start Photos Section***********/
+#photos .mainContent{
+    padding-top: 5%;
+}
+
+#juicebox-container{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#menu{
+    background: none repeat scroll 0 0 #484952;
+    float: left;
+    margin-left: 4%;
+    min-height: 35vh;
+    padding: 1% 2%;
+    width: 15vw;
+}
+
+#menu h3{
+    font-size: 1.75em;
+    font-weight: 200;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+#menu ol{
+}
+
+#menu ol li{
+    list-style-type: none;
+    line-height: 16pt;
+}
+
+#outsideContainer{
+    float: left;
+    width: 75vw;
+}
+
+.link-button:hover{
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+/**********End Photos Section***********/
+
+
+/**********Start About section****************/
+#fixedNav{
+background: none repeat scroll 0 0 rgba(211, 211, 211, 0.9);
+    display: none;
+    margin-left: 2%;
+    padding-left: 1%;
+    position: fixed;
+}
+#fixedNav ul{
+    
+}
+#fixedNav a{
+    color: black;
+    
+}
+
+#fixedNav ul li{
+    list-style-type: none;
+    line-height: 150%;
+}
+body#about .mainContent{
+    padding-top: 3%;
+}
+.roster{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    margin-bottom: 4%;
+}
+.roster a{
+    text-decoration: none;
+    color:inherit;
+}
+.coaches{
+    border-bottom: 2px dashed #ddd;
+    margin-bottom: 4%;
+    padding-bottom: 3%;
+}
+.jumpers{
+    border-bottom: 2px dashed #ddd;
+    margin-bottom: 4%;
+    padding-bottom: 3%;
+}
+.board{
+    border-bottom: 2px dashed #ddd;
+    padding-bottom: 3%;
+}
+#about .roster h3{
+    font-size: 25pt;
+    margin-bottom: -3.5%;
+    margin-left: 1%;
+}
+.mugShot{
+    float: left;
+    max-height: 150px;
+    padding: 1% 2% 1% 1%;
+}
+figcaption{
+    max-width: 350px;
+    font-size: 10pt;
+}
+.bio{
+    margin-top: 5%;
+    overflow: auto;
+}
+.bio ul.row{
+    padding: 0;
+}
+.bio ul{
+    list-style-type: none;
+}
+.bio ul.row li{
+    display: inline;
+}
+.bio ul.row >:first-child{
+    font-weight: bold;
+} 
+.bio ul li:first-child ul.row { 
+    font-size: 16pt;
+}
+
+.money{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+#about .money h3{
+    font-size: 30pt;
+    margin: 0 0 2%;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.fundraiser{
+/*    min-height:350px;*/
+    overflow: auto;
+    border-bottom: 2px dashed #ddd;
+    margin-bottom: 4%;
+    padding-bottom: 3%;
+}
+.fundraiser figure{
+    float: right;
+    padding: 1%;
+}
+.fundraiser img{
+    max-width: 350px;
+}
+.fundraisingEvents{
+    margin-top: 1%;
+}
+.fundraiser li{
+    margin-left: 2%;
+}
+.fundraiser ul.row li{
+    display: inline;
+    margin-left: 0;
+}
+.fundraiser ul.row >:first-child{
+    font-weight: bold;
+}
+
+.sponsors{
+    padding-bottom: 5%;
+}
+.sponsors figure{
+    float: left;
+    padding: 1%;
+    margin-right: 5%;
+}
+.sponsors img{
+    max-width: 350px;
+}
+.sponsors ul{
+    margin-top: 1%;
+    padding-left: 46%;
+}
+.sponsors a{
+    color:inherit;
+}
+.sponsors p:nth-last-child(1){
+    margin-top: 2%
+}
+
+.whoWeAre{
+    border-bottom: 2px dashed #ddd;
+    margin-bottom: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 220px;
+    overflow: auto;
+    padding-bottom: 3%;
+    width: 75%;
+}
+.whoWeAre h3{
+    font-size: 30pt;
+    margin: 0 0 2%;
+    text-align: center;    
+}
+.whoWeAre .right{
+    float: right;
+    width: 80%;
+}
+.whoWeAre .right ul{
+    margin-left: 5%;
+    margin-top: 1%;
+}
+#aboutNav{
+    background: none repeat scroll 0 0 #484952;
+    float: right;
+    margin-left: 2%;
+    padding: 1%;
+    width: 15%;
+}
+#aboutNav ul{
+    margin-left: 10%;
+}
+#aboutNav ul li{
+    line-height: 150%;
+}
+#aboutNav a{
+    color: inherit;
+}
+#aboutNav h4{
+    font-size: 15pt;
+    margin-bottom: 2%;
+    text-align: center;
+}
+/**********End About section****************/
+
+
+/**********Start Footer Section***********/
+footer {
+	background: #ddd;
+        padding: 1%;
+}
+/**********End Footer section****************/
+
+
+/**********Start AdminEvent section****************/
+
+.displayEvents{
+   
+    
+}
+
+.event{
+ 
+    
+}
+
+.eventHeading{
+
+
+    
+}
+.eventDescription{
+
+    
+   white-space: pre-line; 
+}
