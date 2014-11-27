@@ -318,9 +318,12 @@ try{
 //The members that were already selected as present
         $alreadyPresent = $_SESSION["alreadyPresent"];
         
+        if (count($checked) < 1 ){ //If nothing is checked, then just use the list of members for that event
+            $tempUnchecked = $memberId;
+        }else{
         //Compare the two arrays, and determine which are unchecked
         $tempUnchecked = array_diff($memberId, $checked);
-
+        }
         
         //Take the unchecked array, and reformat it
         foreach ($tempUnchecked as $value) {
@@ -334,7 +337,7 @@ try{
             
        
             //Array to hold the items to be added to relationship table
-            $newAttendance = array();
+            $newAttendanceAdd = array();
             
             
    //If the box is checked, do this
@@ -363,30 +366,42 @@ try{
         
             
             
+            //Array to hold the items to be added to relationship table
+            $newAttendanceDelete = array();
+            
       //If the box is NOT checked, do this
-            $L = 0;
+            $k = 0;
             foreach ($unchecked as $value) {
                 if (in_array($value, $alreadyPresent)) {
                     $newAttendanceDelete[] = $value; 
                     $newAttendanceDelete[] = $chosenEventId; //Add the id of the tbl, for the SQL statemtns
-                    $L++;
+                    $k++;
                 } else {
                     //If the unchecked value is not in already present, do this
                 }
             }
             
             $thisDatabase->db->beginTransaction();
-            $query = "INSERT INTO tblAttends (fnkMemberId, fnkEventId) VALUES (?,?)";
+            $query = "DELETE entry FROM tblAttends AS entry 
+                      CROSS JOIN ( SELECT fnkMemberId, fnkEventId FROM tblAttends ";
+            $query .= "where (fnkMemberId = ? and fnkEventId = ?)";
 
+            
             //Add the correct number of question marks depending on the size of the array.
             $i = 0;
-            while ($i < $L-1) {
-                $query .= ",(?,?)";
+            while ($i < $k-1) {
+                $query .= " or (fnkMemberId = ? and fnkEventId = ?)";
                 $i++;
             }
-            $Result = $thisDatabase->insert($query,$newAttendance);
+            $query .= " ) AS x USING (fnkMemberId, fnkEventId)";
+            
+            $Result = $thisDatabase->insert($query,$newAttendanceDelete);
             $dataEntered = $thisDatabase->db->commit();      
                 
+            
+            
+            
+            print $query;
             print"<pre>";
             print "checked";
             print_r($checked);
