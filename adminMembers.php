@@ -179,7 +179,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
 
 
 <!--Form that is used to get inputs and add member-->
-<setion class="addMembers">
+<section class="addMembers">
 <form action="<?php print $phpSelf; ?>" method="post" id="frmMembers" enctype="multipart/form-data">
 
         <fieldset class="memberInput">
@@ -264,7 +264,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
 
 
     </form>
-</setion>
+</section>
 
 
 <?php
