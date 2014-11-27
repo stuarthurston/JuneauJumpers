@@ -179,6 +179,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
 
 
 <!--Form that is used to get inputs and add member-->
+<setion class="addMembers">
 <form action="<?php print $phpSelf; ?>" method="post" id="frmMembers" enctype="multipart/form-data">
 
         <fieldset class="memberInput">
@@ -187,7 +188,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <input type="text" id="txtFirstName" name="txtFirstName"
                        value="<?php print $firstName; ?>"
                        tabindex="100" maxlength="45" placeholder="Enter your First Name"
-                       <?php if ($firstNameERROR) print 'class="mistake"'; ?>autofocus/>
+                       <?php if ($firstNameERROR) print 'class="mistake"'; ?>/>
             </section>
             
             <section class="lastNameInput">
@@ -195,7 +196,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <input type="text" id="txtLastName" name="txtLastName"
                        value="<?php print $lastName; ?>"
                        tabindex="200" maxlength="45" placeholder="Enter your Last Name"
-                       <?php if ($lastNameERROR) print 'class="mistake"'; ?>autofocus/>
+                       <?php if ($lastNameERROR) print 'class="mistake"'; ?>/>
             </section>
             
             <section class="ageInput">
@@ -203,7 +204,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <input type="text" id="txtAge" name="txtAge"
                        value="<?php print $age; ?>"
                        tabindex="300" maxlength="45" placeholder="Enter your Age"
-                       <?php if ($ageERROR) print 'class="mistake"'; ?>autofocus/>
+                       <?php if ($ageERROR) print 'class="mistake"'; ?>/>
             </section>
             
             <section class="bioInput">
@@ -211,7 +212,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <input type="text" id="txtBio" name="txtBio"
                        value="<?php print $bio; ?>"
                        tabindex="400" maxlength="45" placeholder="Enter your Biography"
-                       <?php if ($bioERROR) print 'class="mistake"'; ?>autofocus/>
+                       <?php if ($bioERROR) print 'class="mistake"'; ?>/>
             </section>
             
             <section class="emailInput">
@@ -219,7 +220,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <input type="text" id="txtEmail" name="txtEmail"
                        value="<?php print $email; ?>"
                        tabindex="500" maxlength="45" placeholder="Enter your Email"
-                       <?php if ($emailERROR) print 'class="mistake"'; ?>autofocus/>
+                       <?php if ($emailERROR) print 'class="mistake"'; ?>/>
             </section>
 
             <section class="phoneInput">
@@ -227,7 +228,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <input type="text" id="txtPhone" name="txtPhone"
                        value="<?php print $phone; ?>"
                        tabindex="600" maxlength="45" placeholder="Enter your Phone Number"
-                       <?php if ($phoneERROR) print 'class="mistake"'; ?>autofocus/>
+                       <?php if ($phoneERROR) print 'class="mistake"'; ?>/>
             </section>
             
             <section class="imageInput">
@@ -263,7 +264,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
 
 
     </form>
-
+</setion>
 
 
 <?php
