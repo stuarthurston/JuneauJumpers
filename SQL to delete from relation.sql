@@ -1,10 +1,10 @@
-delete from tblAttends
-where fnkMemberId in (
-    select a.fnkMemberId
-    from (select * from tblAttends) a 
-    where a.fnkMemberId='0' 
-) AND fnkEventId in (
-    select b.fnkEventId
-    from (select * from tblAttends) b 
-    where b.fnkEventId='12' 
+DELETE FROM tblAttends
+WHERE fnkMemberId IN (
+    SELECT a.fnkMemberId
+    FROM (SELECT * FROM tblAttends) a 
+    WHERE a.fnkMemberId='0' 
+) AND fnkEventId IN (
+    SELECT b.fnkEventId
+    FROM (SELECT * FROM tblAttends) b 
+    WHERE b.fnkEventId='12' 
 );
