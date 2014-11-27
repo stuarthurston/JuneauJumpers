@@ -18,10 +18,23 @@ DELETE FROM tblAttends
 WHERE fnkMemberId IN (
     SELECT a.fnkMemberId
     FROM (SELECT * FROM tblAttends) a 
-    where (fnkMemberId = '0' and fnkEventId = '36') 
-    OR (fnkMemberId = '0' and fnkEventId = '37')
+    where (fnkMemberId = '23379' and fnkEventId = '36') 
+    OR (fnkMemberId = '23389' and fnkEventId = '37')
 );  
 
 
 
 Select * from tblAttends where (fnkMemberId = '0' and fnkEventId = '36') or (fnkMemberId = '0' and fnkEventId = '37');
+
+
+
+
+DELETE 
+  entry
+  FROM tblAttends AS entry 
+CROSS JOIN (
+  SELECT fnkMemberId, fnkEventId FROM tblAttends 
+where (fnkMemberId = '0' and fnkEventId = '12')
+) AS x
+USING (fnkMemberId, fnkEventId);
+
