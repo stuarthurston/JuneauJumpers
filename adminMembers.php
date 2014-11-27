@@ -11,7 +11,7 @@ bottom of the form, once the button is pressed, it will be used instead-->
 <?php 
 if (!isset($_POST["btnAdd"])) {
     print "<section class=\"displayMembers\">";
-    include "getListofMembersTest.php";
+    include "getListofMembers.php";
     print"</section>";
 }
 ?>
