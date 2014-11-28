@@ -7,7 +7,7 @@ if ($_SESSION["admin"]) {
 //Display the list of the current admins, before the form is submitted
     if (!isset($_POST["btnAdd"])) {
         print "<section class=\"displayAdmins\">";
-        include "getListofAdminsTest.php";       
+        include "getListofAdmins.php";       
         print"</section>";
     }
 
@@ -148,40 +148,41 @@ if ($_SESSION["admin"]) {
         }
     }
         ?>
+        <section class="addAdmin">
         <form action="<?php print $phpSelf; ?>" method="post" id="frmAddAdmin">
 
             <fieldset class="addAdmin">
-                
+
                 <section class="newFirstName">
                     <label for="txtFirstName">First Name</label>
                     <input type="text" id="txtFirstName" name="txtFirstName"
                            value="<?php print $firstName; ?>"
                            tabindex="100" maxlength="45" placeholder="Enter your FirstName"
-                            <?php if ($firstNameERROR) print 'class="mistake"'; ?>/>
+                           <?php if ($firstNameERROR) print 'class="mistake"'; ?>/>
                 </section>
-                
+
                 <section class="newLastName">
                     <label for="txtLastName">Last Name</label>
                     <input type="text" id="txtLastName" name="txtLastName"
                            value="<?php print $lastName; ?>"
                            tabindex="100" maxlength="45" placeholder="Enter your LastName"
-                            <?php if ($lastNameERROR) print 'class="mistake"'; ?>/>
+                           <?php if ($lastNameERROR) print 'class="mistake"'; ?>/>
                 </section>
-                
+
                 <section class="newEmail">
                     <label for="txtEmail">Email</label>
                     <input type="text" id="txtEmail" name="txtEmail"
                            value="<?php print $email; ?>"
                            tabindex="100" maxlength="45" placeholder="Enter your username"
-                            <?php if ($emailERROR) print 'class="mistake"'; ?>/>
+                           <?php if ($emailERROR) print 'class="mistake"'; ?>/>
                 </section>
-                
+
                 <section class="newUsername">
                     <label for="txtUsername">Username</label>
                     <input type="text" id="txtUsername" name="txtUsername"
                            value="<?php print $username; ?>"
                            tabindex="100" maxlength="45" placeholder="Enter your username"
-                            <?php if ($usernameERROR) print 'class="mistake"'; ?>/>
+                           <?php if ($usernameERROR) print 'class="mistake"'; ?>/>
                 </section>
 
 
@@ -191,15 +192,15 @@ if ($_SESSION["admin"]) {
                     <input type="password" id="txtPassword" name="txtPassword"
                            value=""
                            tabindex="120" maxlength="45" placeholder="Enter your Password"
-                            <?php if ($passwordERROR) print 'class="mistake"'; ?>/>
+                           <?php if ($passwordERROR) print 'class="mistake"'; ?>/>
                 </section>
-                
+
                 <section class="newPasswordCon">
                     <label for="txtPasswordCon">Confirm Password</label>
                     <input type="password" id="txtPasswordCon" name="txtPasswordCon"
                            value=""
                            tabindex="120" maxlength="45" placeholder="Enter your Password"
-                            <?php if ($passwordConERROR) print 'class="mistake"'; ?>/>
+                           <?php if ($passwordConERROR) print 'class="mistake"'; ?>/>
                 </section>
 
             </fieldset> <!-- addAdmin -->
@@ -210,7 +211,7 @@ if ($_SESSION["admin"]) {
 
 
         </form>
-
+    </section>
         <?php
     
 
