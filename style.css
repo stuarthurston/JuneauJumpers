@@ -438,8 +438,8 @@ figcaption{
 
 /**********Start Footer Section***********/
 footer {
-	background: #ddd;
-        padding: 1%;
+/*	background: #ddd;
+        padding: 1%;*/
         
 /*  This doesnt work quite correctly.          
     background: none repeat scroll 0 0 #ddd;
@@ -567,14 +567,43 @@ fieldset.memberInput section{
 
 /**********Start AdminEditPrivs section****************/
 
+
+
+
 #adminEditPrivs .displayAdmins{
     margin-top: 2%;
 }
 
+#adminMembers fieldset.addAdmin{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    width: 90%;
+}
+
+fieldset.addAdmin section{
+    margin-top: 5px;
+}
+
+fieldset.addAdmin label{
+    color: white;
+    display: block;
+    float: left;
+    font-size: 13pt;
+    margin-right: 0.5em;
+    text-align: right;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    width: 10em;
+}
+
+
+
 #adminEditPrivs table{
     margin-left: auto;
     margin-right: auto;
-    color: #ddd;  
+    color: #ddd;
+    width: 90%;
 }
 
 #adminEditPrivs thead th{
@@ -595,4 +624,31 @@ fieldset.memberInput section{
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+#adminEditPrivs section.displayAdmins .button{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    width: 90%; 
+}
+
+#adminEditPrivs .displayAdmins input#btnSet{
+    width: auto;
+}
+
+#adminEditPrivs section.addAdmin .button{
+    margin-top: 5px;
+    padding-left: 37px;
+    text-align: center;
+    width: 30%;
+}
+
+#adminEditPrivs section.addAdmin input#btnAdd{
+    font-size: 14pt;
+    margin-left: 0;
+    margin-top: 0;
+    padding-left: 0;
+    text-align: center;
+    width: 25%;
 }
