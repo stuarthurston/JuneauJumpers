@@ -56,8 +56,7 @@ if (isset($_POST["btnAdd"])) {
     $bio        = htmlentities($_POST["txtBio"], ENT_QUOTES, "UTF-8");
     $email      = htmlentities($_POST["txtEmail"], ENT_QUOTES, "UTF-8");
     $phone      = htmlentities($_POST["txtPhone"], ENT_QUOTES, "UTF-8");
-    $image      = htmlentities($_POST["filImage"], ENT_QUOTES, "UTF-8");
-    
+    $image      = htmlentities($_FILES["filImage"]["name"], ENT_QUOTES, "UTF-8");
     
     
     
@@ -148,10 +147,14 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
         
         //This provides an upto date listing of the table
         print "<section class=\"displayMembers\">";
-        include "getListofMembersTest.php";
+        include "getListofMembers.php";
         print"</section>";
         
         include "upload.php";
+        
+        //Unset variables so that the form is empty after a submit
+        unset($firstName, $lastName, $age, $position, $bio, $email, $phone, $image);
+        
     } //END If the button is pressed and error empty
     else {
 
@@ -162,7 +165,14 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
         //
         // display any error messages before we print out the form
 
+        
+        
         if ($errorMsg) {
+            
+            print "<section class=\"displayMembers\">";
+            include "getListofMembers.php";
+            print"</section>";
+
             print '<div id="errors">';
             print "<ol>\n";
             foreach ($errorMsg as $err) {
@@ -248,13 +258,6 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                     </select>
                 </section>
 
-<!--                <section class="adminStatusInput">
-                    <label for="lstAdminStatus">Admin Status</label>
-                    <select name="lstAdminStatus">
-                        <option value="0"selected>No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </section>-->
             
         </fieldset> <!-- loginInput -->
         
