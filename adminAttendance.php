@@ -101,6 +101,7 @@ if ($_SESSION["admin"]) {
 //            $_SESSION['eventListing'] = array_values($_SESSION['eventListing']);
         
         ?>
+<section class = "chooseEvent">
         <form action="<?php print $phpSelf; ?>" method="post" id="frmChooseEvent">
         <?php
         print "\n\t<label for='eventListing'>Event</label>";
@@ -123,6 +124,7 @@ if ($_SESSION["admin"]) {
             </fieldset> <!-- ends buttons -->  
 
         </form>
+</section>
         <?php
     } catch (PDOExecption $e) {
         $thisDatabase->db->rollback();
@@ -231,7 +233,9 @@ try{
             $memberId = $_SESSION["memberId"];
             
             ?>
-            <form action="<?php print $phpSelf; ?>" method="post" id="frmDeleteMember">
+<section class="takeAttendance">
+            <form action="<?php print $phpSelf; ?>" method="post" id="frmTakeAttendance">
+                
 
             <?php
 
@@ -283,6 +287,7 @@ try{
                     <input type="submit" id="btnPresent" name="btnPresent" value="Present" tabindex="900" class="button">
                 </fieldset> <!-- ends buttons -->
             </form>
+    </section>
             <?php
             
             
@@ -398,15 +403,7 @@ try{
             $Result = $thisDatabase->insert($query,$newAttendanceDelete);
             $dataEntered = $thisDatabase->db->commit();      
                 
-            
-            
-            
-            print $query;
-            print"<pre>";
-            print "checked";
-            print_r($checked);
-            print"unchecked";
-            print_r($unchecked);
+
         } catch (PDOExecption $e) {
             $thisDatabase->db->rollback();
             print "There was a problem with accpeting your data please contact us directly.";
@@ -464,4 +461,8 @@ try{
 
     <?php
 } //If the admin is logged in
+else {
+    print"ACCESS DENIED";
+}
+include_once"footer.php";
 ?>
