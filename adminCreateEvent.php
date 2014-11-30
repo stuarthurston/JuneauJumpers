@@ -176,4 +176,7 @@ if ($_SESSION["admin"]) {
 
     <?php
 } //If the admin is logged in
+else {
+    include_once"accessDenied.php";
+}
 ?>
