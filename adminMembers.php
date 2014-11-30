@@ -272,7 +272,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
 
 <?php
 } else {
-    print"ACCESS DENIED";
+    include_once"accessDenied.php";
 }
 include_once"footer.php";
 ?>
