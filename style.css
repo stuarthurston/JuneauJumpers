@@ -733,3 +733,25 @@ fieldset.addAdmin label{
     padding-top: 3%;
     clear: both;
 }
+
+.accessDenied{
+    margin-right: auto;
+width: 25%;
+text-align: center;
+margin-top: 10%;
+position: absolute;
+margin-left: 35%;
+height: 25%;
+color: red;
+}
+
+.accessDenied h2 {
+    
+}
+
+.accessDenied input.button{
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 1%;
+    margin-top: 2%;
+}
