@@ -129,7 +129,7 @@ if ($_SESSION["admin"]) {
                 
         //This is an upto date of the admins
         print "<section class=\"displayAdmins\">";
-        include "getListofAdminsTest.php";
+        include "getListofAdmins.php";
         print"</section>";
        
 
@@ -218,7 +218,7 @@ if ($_SESSION["admin"]) {
 
 } //If the admin is logged in
 else {
-    print"ACCESS DENIED";
+    include_once"accessDenied.php";
 }
 include_once"footer.php";
 
