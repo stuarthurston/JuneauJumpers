@@ -567,9 +567,6 @@ fieldset.memberInput section{
 
 /**********Start AdminEditPrivs section****************/
 
-
-
-
 #adminEditPrivs .displayAdmins{
     margin-top: 2%;
 }
@@ -651,4 +648,88 @@ fieldset.addAdmin label{
     padding-left: 0;
     text-align: center;
     width: 25%;
+}
+
+/**********END AdminEditPrivs section****************/
+
+
+
+/**********Start AdminAttendance section****************/
+#adminAttendance table{
+    color: #ddd;
+    margin-left: auto;
+    margin-right: auto;
+    width: 45%;
+}
+
+#adminAttendance thead th {
+    background: none repeat scroll 0 0 #555353;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+#adminAttendance tr:nth-child(odd) {
+    background: none repeat scroll 0 0 #848383;
+}
+
+#adminAttendance tr:nth-child(even) {
+    background: none repeat scroll 0 0 #555353;
+}
+
+#adminAttendance td {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+#adminAttendance .chooseEvent{
+    margin-top: 3%;
+}
+
+#adminAttendance .takeAttendance{
+    margin-top: 2%;
+}
+
+#adminAttendance section.takeAttendance .button{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    width: 45%;
+}
+
+#adminAttendance section.takeAttendance input#btnPresent{
+    width: auto;
+}
+
+#adminAttendance #frmChooseEvent {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 30%;
+}
+
+#adminAttendance #frmChooseEvent label{
+    font-size: 22pt;
+    margin-left: 20%;
+    margin-right: 0;
+    width: auto;
+}
+
+#adminAttendance #eventListing{
+    float: right;
+    font-size: 20pt;
+    margin-left: 0;
+    margin-right: 20%; 
+}
+
+#adminAttendance #frmChooseEvent #btnChoose{
+    font-size: 15pt;
+    height: 40px;
+    width: 65%;
+}
+
+#adminAttendance #frmChooseEvent fieldset.button{
+    padding-top: 3%;
+    clear: both;
 }
