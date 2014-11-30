@@ -462,7 +462,7 @@ try{
     <?php
 } //If the admin is logged in
 else {
-    print"ACCESS DENIED";
+    include_once"accessDenied.php";
 }
 include_once"footer.php";
 ?>
