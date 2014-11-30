@@ -8,7 +8,7 @@ if ($_SESSION["admin"]) {
     $_SESSION["chosenEvent"]; 
     $_SESSION["memberId"]; //hold the values of the members, taken from memberstbl
     $_SESSION["alreadyPresent"]; //Holds the ids of the members that were checked (to be added to attendence)
-    //
+    
 //Connect to the database
     $yourURL = $domain . $phpSelf;
 
@@ -66,39 +66,6 @@ if ($_SESSION["admin"]) {
             
             $idAndTitle = array_combine($tempEventId, $tempEventTitle);
         
-//        print"<pre>";
-//        print_r($eventTitleListing);
-//        print"*****************************";
-//        print"<pre>";
-        
-//        print"<pre>";
-//        print_r($eventIdListing);
-//        print"*****************************";
-//        print"<pre>";
-        
-//        print"<pre>";
-//        print_r($idAndTitle);
-//        print"*****************************";
-//        print"<pre>";
-//        
-//            //Make sure the array is empty to start with
-//            $_SESSION["eventListing"] = array();
-//
-//            //Take the ID array, and reformat it
-//            foreach ($eventListing as $row) {
-//                /* display the data, the array is both associative and index so we are
-//                 *  skipping the index otherwise records are doubled up by using the 'is_int' */
-//                foreach ($row as $field => $value) {
-//                    if (!is_int($field)) {
-//                        $_SESSION["eventListing"][] = $value;
-//                    }
-//                }
-//            }
-//
-//            //remove the possibilties of any duplicates
-//            $_SESSION['eventListing'] = array_unique($_SESSION['eventListing']);
-//            //Make sure the array elements are in order (key goes 0->n)
-//            $_SESSION['eventListing'] = array_values($_SESSION['eventListing']);
         
         ?>
 <section class = "chooseEvent">
@@ -410,56 +377,7 @@ try{
         }
     }
 
-//  if (isset($_POST["btnPresent"])) {
-// print "Yes";
-//      
-//  }
- 
-//    if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
-//
-//        //Once the button has been pressed
-//
-//
-//
-//        print "things worked";
-////        include "upload.php";
-//    } //END If the button is pressed and error empty
-//    else {
-//
-//
-//        //####################################
-//        //
-//        // SECTION 3b Error Messages
-//        //
-//        // display any error messages before we print out the form
-//
-//        if ($errorMsg) {
-//            print '<div id="errors">';
-//            print "<ol>\n";
-//            foreach ($errorMsg as $err) {
-//                print "<li>" . $err . "</li>\n";
-//            }
-//            print "</ol>\n";
-//            print '</div>';
-//        }
-//    }
-    ?>
 
-    <!--Form that is used to get inputs and add member-->
-<!--    <form action="<?php print $phpSelf; ?>" method="post" id="frmMembers">
-
-        <fieldset class="eventInput">
-
-        </fieldset>  loginInput 
-
-        <fieldset class="button">
-            <input type="submit" id="btnAdd" name="btnAdd" value="Add" tabindex="900" class="button">
-        </fieldset>  ends buttons 
-
-
-    </form>-->
-
-    <?php
 } //If the admin is logged in
 else {
     include_once"accessDenied.php";

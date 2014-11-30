@@ -46,10 +46,6 @@ if ($_SESSION["admin"]) {
             $bodyERROR = true;
         }
         
-//        if ($image == "") {
-//            $errorMsg[] = "Please enter an Image";
-//            $imageERROR = true;
-//        }
 
 
 //This section passes the sanitized data through validation functions to 
@@ -80,8 +76,8 @@ if ($_SESSION["admin"]) {
         }
 
 
-//print"<p class=\"x\"><pre>".$body. "</pre></p>";
-        print "things worked";
+
+//        print "things worked";
 //        include "upload.php";
     } //END If the button is pressed and error empty
     else {
@@ -136,15 +132,6 @@ if ($_SESSION["admin"]) {
                 </section>
 
 
-
-        <!--                <section class="adminStatusInput">
-                            <label for="lstAdminStatus">Admin Status</label>
-                            <select name="lstAdminStatus">
-                                <option value="0"selected>No</option>
-                                <option value="1">Yes</option>
-                            </select>
-                        </section>-->
-
         </fieldset> <!-- loginInput -->
 
         <fieldset class="button">
@@ -155,24 +142,6 @@ if ($_SESSION["admin"]) {
     </form>
 
 
-
-
-
-
-        <!--<script src="ckeditor/ckeditor.js"></script>
-
-            <body>
-                <form>
-                    <textarea name="editor1" id="editor1" rows="10" cols="80">
-                        This is my textarea to be replaced with CKEditor.
-                    </textarea>
-                    <script>
-                        // Replace the <textarea id="editor1"> with a CKEditor
-                        // instance, using default configuration.
-                        CKEDITOR.replace( 'editor1' );
-                    </script>
-                </form>
-            </body>-->
 
     <?php
 } //If the admin is logged in
