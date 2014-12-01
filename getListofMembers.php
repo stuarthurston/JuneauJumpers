@@ -1,6 +1,7 @@
 <?php
 if ($_SESSION["admin"]) {
     $_SESSION['memberId']; //This array will hold all of the members Id
+    $_SESSION['updateMember']; //Hold the Id of the member to be updated
     
     //Get the array of all the current members
             $memberId = array();
@@ -52,7 +53,20 @@ if ($_SESSION["admin"]) {
             $thisDatabase->db->rollback();
             print "There was a problem with accpeting your data please contact us directly.";
         }
-    } else {
+    }
+    
+    //If it is trying to be updated
+    if (isset($_POST["btnUpdate"])) {
+        //Get the ID of the member to be updated       
+        $updateMembers = htmlentities(($_POST["updateMem"]), ENT_QUOTES, "UTF-8");
+
+        $_SESSION['updateMember'] = $updateMembers;
+        header('Location: adminMembers.php');
+    }
+
+
+    //If neither delete, or update is being used
+    else {
 
 
 
@@ -128,6 +142,7 @@ if ($_SESSION["admin"]) {
                         }
                     }
                     print "\t\t<th>Delete</th>\n";
+                    print "\t\t<th>Update</th>\n";
                     print "\t</tr>\n</thead>\n";
                     $firstTime = false;
                 }
@@ -140,7 +155,8 @@ if ($_SESSION["admin"]) {
                         print "\t<td>" . $value . "</td>\n";
                     }
                 }
-                echo "\t<td><input type='checkbox' value='$memberId[$i]' name='deleteYN[]'></td>\n</tr>\n";
+                echo "\t<td><input type='checkbox' value='$memberId[$i]' name='deleteYN[]'></td>\n";
+                echo "\t<td><input type='radio' name='updateMem' value='$memberId[$i]'></td>\n</tr>\n";
                 $i++;
             }
             print "</table>\n";
@@ -148,6 +164,7 @@ if ($_SESSION["admin"]) {
 
                 <fieldset class="button">
                     <input type="submit" id="btnDelete" name="btnDelete" value="Delete" tabindex="900" class="button">
+                    <input type="submit" id="btnUpdate" name="btnUpdate" value="Update" tabindex="1000" class="button">
                 </fieldset> <!-- ends buttons -->
             </form>
             <?php
