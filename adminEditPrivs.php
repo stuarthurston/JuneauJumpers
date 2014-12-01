@@ -51,30 +51,28 @@ if ($_SESSION["admin"]) {
 
 //This section passes the sanitized data through validation functions to 
 //ensure that there is something in both of the fields
-//        if ($firstName == "") {
-//            $errorMsg[] = "Please enter your First Name";
-//            $firstNameERROR = true;
-//        }
-//        if ($lastName == "") {
-//            $errorMsg[] = "Please enter your Last Name";
-//            $lastNameERROR = true;
-//        }
-//        if ($email == "") {
-//            $errorMsg[] = "Please enter your email";
-//            $emailERROR = true;
-//        }
-//        if ($username == "") {
-//            $errorMsg[] = "Please enter your Username";
-//            $usernameERROR = true;
-//        }
-//        if ($password == "") {
-//            $errorMsg[] = "Please enter your Password";
-//            $passwordERROR = true;
-//        }
-//        if ($passwordCon == "") {
-//            $errorMsg[] = "Please enter your Password";
-//            $passwordERROR = true;
-//        }
+        if ($firstName == "") {
+            $errorMsg[] = "Please enter your First Name";
+            $firstNameERROR = true;
+        }
+
+        if ($lastName == "") {
+            $errorMsg[] = "Please enter your Last Name";
+            $lastNameERROR = true;
+        }
+        if ($email == "") {
+            $errorMsg[] = "Please enter your email";
+            $emailERROR = true;
+        }
+        if ($username == "") {
+            $errorMsg[] = "Please enter your Username";
+            $usernameERROR = true;
+        }
+        if ($password !== $passwordCon) {
+            $errorMsg[] = "Passwords do not match";
+            $passwordERROR = true;
+            $passwordConERROR = true;
+        }
     }//If the button is pressed
 
 
@@ -138,6 +136,11 @@ if ($_SESSION["admin"]) {
     }//btn pressed and empty error
     else {
         if ($errorMsg) {
+            
+            print "<section class=\"displayAdmins\">";
+            include "getListofAdmins.php";
+            print"</section>";
+            
             print '<div id="errors">';
             print "<ol>\n";
             foreach ($errorMsg as $err) {
