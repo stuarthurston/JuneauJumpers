@@ -3,6 +3,9 @@ include"top.php";
 include "nav.php";
 
 if ($_SESSION["admin"]) {
+    //Get the id of the memebr to be editd
+    $updateMember = $_SESSION['updateMember'];
+    $updateFlag = NULL; //IF SET TO TRUE, UPDATE rather than Add
 ?>
 
 <!--This section is here to display the contents of the table, before
@@ -22,97 +25,112 @@ if (!isset($_POST["btnAdd"])) {
 
 <?php
 
+if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to be updated, set the values from the database
 //Initalize variables, 
-$firstName  = "";
-$lastName   = "";
-$age        = "";
-$position   = "";
-$bio        = "";
-$email      = "";
-$phone      = "";
-$image      = "";
+        $firstName = "";
+        $lastName = "";
+        $age = "";
+        $position = "";
+        $bio = "";
+        $email = "";
+        $phone = "";
+        $image = "";
+    }
 
-//Initalize ERROR variables, 
-$firstNameERROR = FALSE;
-$lastNameERROR  = FALSE;
-$ageERROR       = FALSE;
-$positionERROR  = FALSE;
-$bioERROR       = FALSE;
-$emailERROR     = FALSE;
-$phoneERROR     = FALSE;
-$imageERROR     = FALSE;
+    //If the user wants to update an entry
+    elseif (is_numeric($updateMember)) {
+        
 
-//Array to hold the error messages
-$errorMsg = array();
-
-//If the button was pressed
-if (isset($_POST["btnAdd"])) {
-
-//Get the input from the forms, and sanitize them
-    $firstName  = htmlentities($_POST["txtFirstName"], ENT_QUOTES, "UTF-8");
-    $lastName   = htmlentities($_POST["txtLastName"], ENT_QUOTES, "UTF-8");
-    $age        = htmlentities($_POST["txtAge"], ENT_QUOTES, "UTF-8");
-    $position   = htmlentities($_POST["lstPosition"], ENT_QUOTES, "UTF-8");
-    $bio        = htmlentities($_POST["txtBio"], ENT_QUOTES, "UTF-8");
-    $email      = htmlentities($_POST["txtEmail"], ENT_QUOTES, "UTF-8");
-    $phone      = htmlentities($_POST["txtPhone"], ENT_QUOTES, "UTF-8");
-    $image      = htmlentities($_FILES["filImage"]["name"], ENT_QUOTES, "UTF-8");
-    
-    
-    
-
-     //DO SOME VALIDATION
-    //Check to make sure certain entrys are not empty
-    if ($firstName == "") {
-        $errorMsg[] = "Please enter your First Name";
-        $firstNameERROR = true;
-    } 
-    
-    if ($lastName == "") {
-        $errorMsg[] = "Please enter your Last Name";
-        $lastNameERROR = true;
-    } 
-    
-    if ($email == "") {
-        $errorMsg[] = "Please enter your Email";
-        $emailERROR = true;
-    } 
-    
-//This section passes the sanitized data through validation functions to 
-//ensure that the input is in the correct format, and mark when ther is not.
-
-    //DO SOME VALIDATION
-    
-} 
-if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
-        //Insert information into members table (tblMembers)
         try {
-            
-            //See if the user has already made an account BEFORE CONTINUING
             $data = array();
-                $data[] = $firstName;
-                $data[] = $lastName;
+            $data[] = $updateMember;
 
             $thisDatabase->db->beginTransaction();
-            $query = 'SELECT fldFirstName FROM tblMembers Where fldFirstName = ? and fldLastName = ?';
+
+
+            $query = "SELECT fldFirstName,fldLastName, fldAge,";
+            $query .=" fldPosition, fldBio, fldEmail, fldPhone, fldImg";
+            $query .=" FROM tblMembers";
+            $query .=" WHERE pmkMemberId = ?";
 
             $results = $thisDatabase->select($query, $data);
 
+
             $dataEntered = $thisDatabase->db->commit();
 
+            //Initalize variables, 
+            $firstName = $results[0]["fldFirstName"];
+            $lastName = $results[0]["fldLastName"];
+            $age = $results[0]["fldAge"];
+            $position = $results[0]["fldPosition"];
+            $bio = $results[0]["fldBio"];
+            $email = $results[0]["fldEmail"];
+            $phone = $results[0]["fldPhone"];
+            $image = $results[0]["fldImg"];
 
-            if (empty($results)) {
-                $alreadyExists = FALSE;
-            } else {
-                $alreadyExists = TRUE;
-                
-            }
 
-            //True means it already exists
-            //False means that it is not taken
-            //If the email does not exist, continue
-            if (!$alreadyExists) {
 
+            $updateFlag = TRUE;
+        } catch (PDOExecption $e) {
+            $thisDatabase->db->rollback();
+            print "There was a problem adding this user to the database, please contact Stuart.";
+        }
+    }
+
+
+//Initalize ERROR variables, 
+    $firstNameERROR = FALSE;
+    $lastNameERROR = FALSE;
+    $ageERROR = FALSE;
+    $positionERROR = FALSE;
+    $bioERROR = FALSE;
+    $emailERROR = FALSE;
+    $phoneERROR = FALSE;
+    $imageERROR = FALSE;
+
+//Array to hold the error messages
+    $errorMsg = array();
+
+//If the button was pressed
+    if (isset($_POST["btnAdd"])) {
+        print"1";
+
+//Get the input from the forms, and sanitize them
+        $firstName = htmlentities($_POST["txtFirstName"], ENT_QUOTES, "UTF-8");
+        $lastName = htmlentities($_POST["txtLastName"], ENT_QUOTES, "UTF-8");
+        $age = htmlentities($_POST["txtAge"], ENT_QUOTES, "UTF-8");
+        $position = htmlentities($_POST["lstPosition"], ENT_QUOTES, "UTF-8");
+        $bio = htmlentities($_POST["txtBio"], ENT_QUOTES, "UTF-8");
+        $email = htmlentities($_POST["txtEmail"], ENT_QUOTES, "UTF-8");
+        $phone = htmlentities($_POST["txtPhone"], ENT_QUOTES, "UTF-8");
+        $image = htmlentities($_FILES["filImage"]["name"], ENT_QUOTES, "UTF-8");
+
+
+
+        //DO SOME VALIDATION
+        //Check to make sure certain entrys are not empty
+        if ($firstName == "") {
+            $errorMsg[] = "Please enter your First Name";
+            $firstNameERROR = true;
+        }
+
+        if ($lastName == "") {
+            $errorMsg[] = "Please enter your Last Name";
+            $lastNameERROR = true;
+        }
+
+        if ($email == "") {
+            $errorMsg[] = "Please enter your Email";
+            $emailERROR = true;
+        }
+
+//This section passes the sanitized data through validation functions to 
+//ensure that the input is in the correct format, and mark when ther is not.
+        //DO SOME VALIDATION
+    }
+    if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
+        if ($updateFlag) {
+            try {
                 $thisDatabase->db->beginTransaction();
 
                 $data = array();
@@ -124,37 +142,114 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 $data[] = $email;
                 $data[] = $phone;
                 $data[] = $image;
+                $data[] = $updateMember;
 
 
                 //Insert everything into the members table
-                $query = "INSERT INTO tblMembers ";
-                $query .="(fldFirstName,fldLastName, fldAge";
-                $query .=", fldPosition, fldBio, fldEmail,fldPhone, fldImg)";
-                $query .=" VALUES (?,?,?,?,?,?,?,?)";
-
-                $results = $thisDatabase->insert($query, $data);
+                $query = "update tblMembers";
+                $query .=" SET fldFirstName = ?";
+                $query .=" ,fldLastName = ?";
+                $query .=" ,fldAge = ?";
+                $query .=" ,fldPosition = ?";
+                $query .=" ,fldBio = ?";
+                $query .=" ,fldEmail = ?";
+                $query .=" ,fldPhone = ?";
+                $query .=" ,fldPhone = ?";
+                $query .=" WHERE pmkMemberId = ?";
+                
+          
+//                print"<pre>";
+//                print $query;
+//                print"</pre>";
+//                print"---";
+//                print"<pre>";
+//                print_r($data);
+//                print"</pre>";
+                
+                $results = $thisDatabase->update($query, $data);
 
                 $dataEntered = $thisDatabase->db->commit();
-            } //If doesnt already exist
-            else{
-                print "There is already a member with this name, please try again";
-            }
-        } catch (PDOExecption $e) {
-            $thisDatabase->db->rollback();
-            print "There was a problem adding this user to the database, please contact Stuart.";
-        }
 
-        
-        //This provides an upto date listing of the table
-        print "<section class=\"displayMembers\">";
-        include "getListofMembers.php";
-        print"</section>";
-        
-        include "upload.php";
-        
-        //Unset variables so that the form is empty after a submit
-        unset($firstName, $lastName, $age, $position, $bio, $email, $phone, $image);
-        
+                unset($_SESSION['updateMember']);
+                header('Location: adminMembers.php');
+                
+            } catch (PDOExecption $e) {
+                $thisDatabase->db->rollback();
+                print "There was a problem adding this user to the database, please contact Stuart.";
+            }
+        } else {
+
+
+            //Insert information into members table (tblMembers)
+            try {
+
+                //See if the user has already made an account BEFORE CONTINUING
+                $data = array();
+                $data[] = $firstName;
+                $data[] = $lastName;
+
+                $thisDatabase->db->beginTransaction();
+                $query = 'SELECT fldFirstName FROM tblMembers Where fldFirstName = ? and fldLastName = ?';
+
+                $results = $thisDatabase->select($query, $data);
+
+                $dataEntered = $thisDatabase->db->commit();
+
+
+                if (empty($results)) {
+                    $alreadyExists = FALSE;
+                } else {
+                    $alreadyExists = TRUE;
+                }
+
+                //True means it already exists
+                //False means that it is not taken
+                //If the email does not exist, continue
+                if (!$alreadyExists) {
+
+                    $thisDatabase->db->beginTransaction();
+
+                    $data = array();
+                    $data[] = $firstName;
+                    $data[] = $lastName;
+                    $data[] = $age;
+                    $data[] = $position;
+                    $data[] = $bio;
+                    $data[] = $email;
+                    $data[] = $phone;
+                    $data[] = $image;
+
+
+                    //Insert everything into the members table
+                    $query = "INSERT INTO tblMembers ";
+                    $query .="(fldFirstName,fldLastName, fldAge";
+                    $query .=", fldPosition, fldBio, fldEmail,fldPhone, fldImg)";
+                    $query .=" VALUES (?,?,?,?,?,?,?,?)";
+
+                    $results = $thisDatabase->insert($query, $data);
+
+                    $dataEntered = $thisDatabase->db->commit();
+                    $updateFlag = FALSE;
+                } //If doesnt already exist
+                else {
+                    print "There is already a member with this name, please try again";
+                }
+            } catch (PDOExecption $e) {
+                $thisDatabase->db->rollback();
+                print "There was a problem adding this user to the database, please contact Stuart.";
+            }
+
+
+            //This provides an up to date listing of the table
+            print "<section class=\"displayMembers\">";
+            include "getListofMembers.php";
+            print"</section>";
+
+            include "upload.php";
+
+            //Unset variables so that the form is empty after a submit
+            unset($firstName, $lastName, $age, $position, $bio, $email, $phone, $image);
+        }//If not an update
     } //END If the button is pressed and error empty
     else {
 
@@ -165,10 +260,10 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
         //
         // display any error messages before we print out the form
 
-        
-        
+
+
         if ($errorMsg) {
-            
+
             print "<section class=\"displayMembers\">";
             include "getListofMembers.php";
             print"</section>";
@@ -181,9 +276,8 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
             print "</ol>\n";
             print '</div>';
         }
-}
-
-?>
+    }
+    ?>
 
 
 
@@ -221,7 +315,7 @@ if (isset($_POST["btnAdd"]) AND empty($errorMsg)) {
                 <label for="txtBio">Biography</label>
                 <input type="text" id="txtBio" name="txtBio"
                        value="<?php print $bio; ?>"
-                       tabindex="400" maxlength="45" placeholder="Enter your Biography"
+                       tabindex="400" maxlength="4500" placeholder="Enter your Biography"
                        <?php if ($bioERROR) print 'class="mistake"'; ?>/>
             </section>
             
