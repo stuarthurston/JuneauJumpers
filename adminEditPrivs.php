@@ -43,6 +43,7 @@ if ($_SESSION["admin"]) {
         $username = htmlentities($_POST["txtUsername"], ENT_QUOTES, "UTF-8");
         $username = strtolower($username);
         $password = htmlentities($_POST["txtPassword"], ENT_QUOTES, "UTF-8");
+        $passwordRaw = $password;
         $password = sha1($password);
         $passwordCon = htmlentities($_POST["txtPasswordCon"], ENT_QUOTES, "UTF-8");
         $passwordCon = sha1($passwordCon);
@@ -110,7 +111,28 @@ if ($_SESSION["admin"]) {
                     $results = $thisDatabase->select($query, $data);
 
                     $dataEntered = $thisDatabase->db->commit();
-                } //Passwords match 
+                    
+                    
+                    $to = $email; // the person who filled out the form
+                    $cc = "";
+                    $bcc = "";
+                    $from = "Admin<noreply@juneauJumpers.com>";
+                    $subject = "New Privileges";
+                    
+                    $message = "<p>You have been granted access to the administrator section of the website: ";
+                    $message .= "<a href='https://sathurst.w3.uvm.edu/cs148/assignment7.0/home.php'>Juneau Jumpers</a></p>"; 
+                    $message .= "<p>Click the 'Login' button located on the right side of the menu.</p>";
+                    $message .= "<h2>Username: ".$username."</h2>";
+                    $message .= "<h2>Password: ".$passwordRaw."</h2>";
+                    
+                    
+                    
+                    require_once "lib/mail-message.php";
+                    
+                    //Send the information to the mailing function
+            $mailed = sendMail($to, $cc, $bcc, $from, $subject, $message);
+            
+                } //End Passwords match 
                 else {
                     $errorMsg[] = "The passwords did not match, please try again";
                 }
