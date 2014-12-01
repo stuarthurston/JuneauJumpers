@@ -102,7 +102,7 @@ if ($_SESSION["admin"]) {
             //Make sure the array is empty to start with
             $_SESSION["memberId"] = array();
 
-            
+
             //Take the ID array, and reformat it
             foreach ($memberIdResult as $row) {
                 /* display the data, the array is both associative and index so we are
@@ -120,53 +120,64 @@ if ($_SESSION["admin"]) {
             $_SESSION['memberId'] = array_values($_SESSION['memberId']);
 
             $memberId = $_SESSION["memberId"];
-            
             ?>
-            <form action="<?php print $phpSelf; ?>" method="post" id="frmDeleteMember">
+                        <form action="<?php print $phpSelf; ?>" method="post" id="frmDeleteMember">
 
-            <?php
+                        <?php
+                        //Display all of the information, in a table
+                        print "\n<table>\n";
 
-            //Display all of the information, in a table
-            print "\n<table>\n";
+                        $firstTime = true;
+                        $i = 0;
+                        /* since it is associative array display the field names */
+                        foreach ($results as $row) {
+                            if ($firstTime) {
+                                print "<thead>\n\t<tr>\n";
+                                $keys = array_keys($row);
+                                foreach ($keys as $key) {
+                                    if (!is_int($key)) {
+                                        print "\t\t<th>" . $key . "</th>\n";
+                                    }
+                                }
+                                print "\t\t<th>Delete</th>\n";
+                                print "\t\t<th>Update</th>\n";
+                                print "\t</tr>\n</thead>\n";
+                                $firstTime = false;
+                            }
 
-            $firstTime = true;
-            $i = 0;
-            /* since it is associative array display the field names */
-            foreach ($results as $row) {
-                if ($firstTime) {
-                    print "<thead>\n\t<tr>\n";
-                    $keys = array_keys($row);
-                    foreach ($keys as $key) {
-                        if (!is_int($key)) {
-                            print "\t\t<th>" . $key . "</th>\n";
+                            /* display the data, the array is both associative and index so we are
+                             *  skipping the index otherwise records are doubled up */
+                            print "<tr>\n";
+                            $k = 0;
+                            foreach ($row as $field => $value) {
+
+                                if (!is_int($field)) {
+                                    $k++;
+                                    if ($k == 8) {
+
+                                        if (empty($value)) { //If the member does not have a profile picture
+                                            $value = "http://blogs.kqed.org/education/files/2011/06/facebook_blank_face3.jpeg";
+                                        } else {
+                                            $value = "uploads/" . $value;
+                                        }
+                                        print "\t<td class='img'><img src='" . $value . "' height= '80'></td>\n";
+                                    } else {
+                                        print "\t<td>" . $value . "</td>\n";
+                                    }
+                                }
+                            }
+                            echo "\t<td><input type='checkbox' value='$memberId[$i]' name='deleteYN[]'></td>\n";
+                            echo "\t<td><input type='radio' name='updateMem' value='$memberId[$i]'></td>\n</tr>\n";
+                            $i++;
                         }
-                    }
-                    print "\t\t<th>Delete</th>\n";
-                    print "\t\t<th>Update</th>\n";
-                    print "\t</tr>\n</thead>\n";
-                    $firstTime = false;
-                }
+                        print "</table>\n";
+                        ?>
 
-                /* display the data, the array is both associative and index so we are
-                 *  skipping the index otherwise records are doubled up */
-                print "<tr>\n";
-                foreach ($row as $field => $value) {
-                    if (!is_int($field)) {
-                        print "\t<td>" . $value . "</td>\n";
-                    }
-                }
-                echo "\t<td><input type='checkbox' value='$memberId[$i]' name='deleteYN[]'></td>\n";
-                echo "\t<td><input type='radio' name='updateMem' value='$memberId[$i]'></td>\n</tr>\n";
-                $i++;
-            }
-            print "</table>\n";
-            ?>
-
-                <fieldset class="button">
-                    <input type="submit" id="btnDelete" name="btnDelete" value="Delete" tabindex="900" class="button">
-                    <input type="submit" id="btnUpdate" name="btnUpdate" value="Update" tabindex="1000" class="button">
-                </fieldset> <!-- ends buttons -->
-            </form>
+                            <fieldset class="button">
+                                <input type="submit" id="btnDelete" name="btnDelete" value="Delete" tabindex="900" class="button">
+                                <input type="submit" id="btnUpdate" name="btnUpdate" value="Update" tabindex="1000" class="button">
+                            </fieldset> <!-- ends buttons -->
+                        </form>
             <?php
         } catch (PDOExecption $e) {
             $thisDatabase->db->rollback();
