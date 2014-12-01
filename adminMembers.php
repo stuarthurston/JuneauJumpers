@@ -1,6 +1,7 @@
 <?php   
 include"top.php";
 include "nav.php";
+require_once "upload.php";
 
 if ($_SESSION["admin"]) {
     //Get the id of the memebr to be editd
@@ -34,7 +35,7 @@ if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to 
         $bio = "";
         $email = "";
         $phone = "";
-        $image = "";
+        
     }
 
     //If the user wants to update an entry
@@ -69,7 +70,6 @@ if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to 
             $image = $results[0]["fldImg"];
 
 
-
             $updateFlag = TRUE;
         } catch (PDOExecption $e) {
             $thisDatabase->db->rollback();
@@ -93,7 +93,7 @@ if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to 
 
 //If the button was pressed
     if (isset($_POST["btnAdd"])) {
-        print"1";
+     
 
 //Get the input from the forms, and sanitize them
         $firstName = htmlentities($_POST["txtFirstName"], ENT_QUOTES, "UTF-8");
@@ -103,7 +103,14 @@ if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to 
         $bio = htmlentities($_POST["txtBio"], ENT_QUOTES, "UTF-8");
         $email = htmlentities($_POST["txtEmail"], ENT_QUOTES, "UTF-8");
         $phone = htmlentities($_POST["txtPhone"], ENT_QUOTES, "UTF-8");
-        $image = htmlentities($_FILES["filImage"]["name"], ENT_QUOTES, "UTF-8");
+        $imageNew = htmlentities($_FILES["filImage"]["name"], ENT_QUOTES, "UTF-8");
+        
+        //Keep the existing image if none has been entered
+        if (empty($imageNew)) {
+            $image = $image;
+        } else {
+            $image = $imageNew;
+        }
 
 
 
@@ -154,7 +161,7 @@ if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to 
                 $query .=" ,fldBio = ?";
                 $query .=" ,fldEmail = ?";
                 $query .=" ,fldPhone = ?";
-                $query .=" ,fldPhone = ?";
+                $query .=" ,fldImg = ?";
                 $query .=" WHERE pmkMemberId = ?";
                 
           
@@ -245,7 +252,7 @@ if (empty($updateMember) && !is_numeric($updateMember)) { //If the record is to 
             include "getListofMembers.php";
             print"</section>";
 
-            include "upload.php";
+            
 
             //Unset variables so that the form is empty after a submit
             unset($firstName, $lastName, $age, $position, $bio, $email, $phone, $image);
