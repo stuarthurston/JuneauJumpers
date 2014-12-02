@@ -53,7 +53,7 @@ fieldset{
 }
 
 .passwordInput{
-    margin-top: 1px;
+    margin-top: 2px;
 }
 
 /*Style the button*/
@@ -75,7 +75,20 @@ fieldset{
 
 .loginInput{
     text-align: center;
+    width: 17em;
 }
 
+.usernameInput, .passwordInput{
+    float: left;
+}
 
+#loginFunction .button{
+    width: 12em;
+    margin-top: 3px;
+}
+
+#loginFunction label{
+    width: 5em;
+    text-align: left;
+}
 
