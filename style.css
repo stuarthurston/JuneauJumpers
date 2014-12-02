@@ -135,6 +135,14 @@ ol#secondaryNav li a {
 	color: #eee;
 }
 
+.mistake{
+    outline: 2px solid red;
+}
+
+#errors{
+    color: red;
+    margin-left: 10%;
+}
 
 /**********Start HomePage Section***********/
 #home .body{
@@ -533,6 +541,7 @@ fieldset.memberInput section{
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
+    max-height: 100px;
 }
 
 #adminMembers .displayMembers .button{
@@ -542,7 +551,7 @@ fieldset.memberInput section{
     width: 90%; 
 }
 
-#adminMembers .displayMembers input#btnDelete{
+#adminMembers .displayMembers input#btnDelete,#adminMembers .displayMembers input#btnUpdate{
     width: auto;
 }
 
@@ -560,6 +569,10 @@ fieldset.memberInput section{
     padding-left: 0;
     text-align: center;
     width: 25%;
+}
+
+#adminMembers td.img{
+    padding-top: 5px;
 }
 /**********END AdminMember section****************/
 
@@ -733,6 +746,13 @@ fieldset.addAdmin label{
     padding-top: 3%;
     clear: both;
 }
+
+/**********END AdminAttendance section****************/
+
+
+
+/**********Start Access Denied section****************/
+
 
 .accessDenied{
     margin-right: auto;
